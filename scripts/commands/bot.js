@@ -3,7 +3,7 @@ module.exports.config = {
   name: `goibot`,
   version: "1.0.0", 
   permission: 0,
-  credits: "nayan",
+  credits: "Rahad",
   description: "", 
   prefix: true,
   category: "user",
@@ -25,7 +25,7 @@ module.exports.handleEvent = async function({ api, event, args, Threads, Users }
 
   if (event.body.indexOf("Bot") == 0 || event.body.indexOf("bot") == 0) {
     var msg = {
-      body: `${name}, ${rand}`
+      body: `╭────────────❍\n╰➤ 👤 𝐃𝐞𝐚𝐫 『${name}』,\╰➤ 🗣️ ${rand}\n╰─────────────────➤`
     };
     return api.sendMessage(msg, threadID, messageID);
   }

@@ -1,7 +1,7 @@
 const axios = require("axios");
 
- module.exports.config = {
-  name: "mini",
+module.exports.config = {
+  name: "jannat",
   version: "1.0.0",
   permission: 0,
   credits: "Rahad",
@@ -11,7 +11,6 @@ const axios = require("axios");
   usages: "mini",
   cooldowns: 5,
   dependencies: {}
-};
 };
 
 module.exports.handleEvent = async function ({ api, event }) {

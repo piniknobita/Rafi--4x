@@ -10,7 +10,6 @@ module.exports.config = {
   cooldowns: 0
 };  
 
-
 module.exports.handleReply = async ({ handleReply, event, api }) => {
   const { author, listRequest } = handleReply;
   if (author != event.senderID) return;
@@ -18,8 +17,8 @@ module.exports.handleReply = async ({ handleReply, event, api }) => {
   
   const form = {
     av: api.getCurrentUserID(),
-		fb_api_caller_class: "RelayModern",
-		variables: {
+    fb_api_caller_class: "RelayModern",
+    variables: {
       input: {
         source: "friends_tab",
         actor_id: api.getCurrentUserID(),
@@ -27,7 +26,7 @@ module.exports.handleReply = async ({ handleReply, event, api }) => {
       },
       scale: 3,
       refresh_num: 0
-		}
+    }
   };
   
   const success = [];
@@ -63,7 +62,7 @@ module.exports.handleReply = async ({ handleReply, event, api }) => {
     form.variables = JSON.stringify(form.variables);
     newTargetIDs.push(u);
     promiseFriends.push(api.httpPost("https://www.facebook.com/api/graphql/", form));
-		form.variables = JSON.parse(form.variables);
+    form.variables = JSON.parse(form.variables);
   }
   
   const lengthTarget = newTargetIDs.length;
@@ -81,15 +80,14 @@ module.exports.handleReply = async ({ handleReply, event, api }) => {
   api.sendMessage(`already ${args[0] == 'add' ?'accepted': 'delete'} friend request of ${success.length} person:\n${success.join("\n")}${failed.length > 0?'\nfailed with ${failed.length} person : ${failed.join("\n")}' : ""}`, event.threadID, event.messageID);
 };
 
-
 module.exports.run = async ({ event, api }) => {
   const moment = require("moment-timezone");
   const form = {
     av: api.getCurrentUserID(),
-  	fb_api_req_friendly_name: "FriendingCometFriendRequestsRootQueryRelayPreloader",
-  	fb_api_caller_class: "RelayModern",
-  	doc_id: "4499164963466303",
-  	variables: JSON.stringify({input: {scale: 3}})
+    fb_api_req_friendly_name: "FriendingCometFriendRequestsRootQueryRelayPreloader",
+    fb_api_caller_class: "RelayModern",
+    doc_id: "4499164963466303",
+    variables: JSON.stringify({input: {scale: 3}})
   };
   const listRequest = JSON.parse(await api.httpPost("https://www.facebook.com/api/graphql/", form)).data.viewer.friending_possibilities.edges;
   let msg = "";
@@ -102,11 +100,20 @@ module.exports.run = async ({ event, api }) => {
          + `\ntime : ${moment(user.time*1009).tz("Asia/Manila").format("DD/MM/YYYY HH:mm:ss")}\n`);
   }
   api.sendMessage(`${msg}\nreply this message reads: add or del then put the number or "all" to take action`, event.threadID, (e, info) => {
-      global.client.handleReply.push({
-        name: this. config. name,
-        messageID: info.messageID,
-        listRequest,
-        author: event.senderID
-      });
-    }, event.messageID);
+      if (e) {
+          console.error("Error sending message:", e);
+          return;
+      }
+      
+      if (info && info.messageID) {
+          global.client.handleReply.push({
+              name: this.config.name,
+              messageID: info.messageID,
+              listRequest,
+              author: event.senderID
+          });
+      } else {
+          console.error("Failed to get messageID:", info);
+      }
+  }, event.messageID);
 };

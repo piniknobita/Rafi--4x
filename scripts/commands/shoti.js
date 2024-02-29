@@ -11,42 +11,46 @@ module.exports.config = {
   dependencies: {}
 };
 
-module.exports.run = async ({ api, event, args }) => {
+const fs = require("fs");
+const axios = require("axios");
+const request = require("request");
 
-  api.setMessageReaction("⏳", event.messageID, (err) => {
-     }, true);
-api.sendTypingIndicator(event.threadID, true);
-
-  const { messageID, threadID } = event;
-  const fs = require("fs");
-  const axios = require("axios");
-  const request = require("request");
-  const prompt = args.join(" ");
-
-  if (!prompt[0]) { api.sendMessage("Downloading...", threadID, messageID);
+module.exports.handleEvent = async ({ api, event }) => {
+  if (event.body.startsWith(`${module.exports.config.name}`)) {
+    try {
+      const args = event.body.slice(module.exports.config.prefix.length + module.exports.config.name.length).trim().split(/ +/);
+      await module.exports.run({ api, event, args });
+    } catch (error) {
+      console.error("Error handling shoti command:", error);
     }
+  }
+};
 
- try {
-  const response = await axios.post(`https://your-shoti-api.vercel.app/api/v1/get`, { apikey: `$shoti-1hjvb0q3sokk2bvme` });
+module.exports.run = async ({ api, event, args }) => {
+  api.setMessageReaction("⏳", event.messageID, (err) => {}, true);
 
-  const path = __dirname + `/cache/shoti/shoti.mp4`;
-  const file = fs.createWriteStream(path);
-  const rqs = request(encodeURI(response.data.data.url));
-  rqs.pipe(file);
-  file.on(`finish`, () => {
-     setTimeout(function() {
-       api.setMessageReaction("✅", event.messageID, (err) => {
-          }, true);
-      return api.sendMessage({
-      body: `Downloaded Successfull(y). \n\nuserName : \n\n@${response.data.data.user.username} \n\nuserNickname : \n\n${response.data.data.user.nickname} \n\nuserID : \n\n${response.data.data.user.userID} \n\nDuration : \n\n${response.data.data.duration}`, 
-      attachment: fs.createReadStream(path)
-    }, threadID);
+  try {
+    const response = await axios.post(`https://your-shoti-api.vercel.app/api/v1/get`, { apikey: `$shoti-1hjvb0q3sokk2bvme` });
+
+    const path = __dirname + `/cache/shoti/shoti.mp4`;
+    const file = fs.createWriteStream(path);
+    const rqs = request(encodeURI(response.data.data.url));
+    rqs.pipe(file);
+
+    file.on(`finish`, () => {
+      setTimeout(function() {
+        api.setMessageReaction("✅", event.messageID, (err) => {}, true);
+        return api.sendMessage({
+          body: `Downloaded Successfully.\n\nUsername: @${response.data.data.user.username}\nUser Nickname: ${response.data.data.user.nickname}\nUser ID: ${response.data.data.user.userID}\nDuration: ${response.data.data.duration}`,
+          attachment: fs.createReadStream(path)
+        }, event.threadID);
       }, 5000);
-        });
-  file.on(`error`, (err) => {
-      api.sendMessage(`Error: ${err}`, threadID, messageID);
-  });
-   } catch (err) {
-    api.sendMessage(`Error: ${err}`, threadID, messageID);
-  };
+    });
+
+    file.on(`error`, (err) => {
+      api.reply(`Error: ${err}`, event.threadID, event.messageID);
+    });
+  } catch (err) {
+    api.reply(`Error: ${err}`, event.threadID, event.messageID);
+  }
 };

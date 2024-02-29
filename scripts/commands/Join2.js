@@ -3,7 +3,7 @@ const fs = require("fs-extra");
 const request = require("request");
 
 module.exports.config = {
-  name: "join",
+  name: "join3",
   version: "1.0.0",
   permission: 0,
   prefix: true,

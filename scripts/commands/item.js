@@ -1,17 +1,17 @@
-
 module.exports.config = {
   name: "item",
   version: "1.0.0",
-  hasPermssion: 0,
-  credits: "RAHAD",
-  description: "item video",
-  commandCategory: "hot",
+  permission: 0,
+  credits: "Rahad",
+  description: "",
+  prefix: true, 
+  category: "item video", 
   usages: "item",
-  cooldowns: 00,
+  cooldowns: 5,
   dependencies: {
-    "request":"",
-    "fs-extra":"",
-    "axios":""
+    "request": "",
+    "fs-extra": "",
+    "axios": ""
   }
 };
 

@@ -1,7 +1,7 @@
 module.exports.config = {
 	name: "ping",
 	version: "1.0.4",
-	permssion: 0,
+	permssion: 2,
 	credits: "NAYAN",
 	description: "Tag all members",
   prefix: true,

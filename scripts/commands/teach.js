@@ -1,20 +1,20 @@
 const axios = require("axios");
 
 module.exports.config = {
-  name: "teach",
-  version: "1.0.0",
-  permission: 0,
-  credits: "Rahad",
-  description: "Teach to sim",
-  prefix: true, 
-  category: "sim simi fun", 
-  usages: "[ask] => [answer]",
-  cooldowns: 5,
-  dependencies: {}
+    name: "teach",
+    version: "1.0.0",
+    permission: 0,
+    credits: "Rahad",
+    description: "Teach to sim",
+    prefix: true,
+    category: "sim simi fun",
+    usages: "[ask] => [answer]",
+    cooldowns: 5,
+    dependencies: {}
 };
 
 module.exports.handleEvent = async function({ api, event, args }) {
-    if (event.body.startsWith(`teach`)) {
+    if (args && args.length > 0 && event.body.startsWith(`teach`)) {
         const { threadID, messageID } = event;
         const input = args.join(" ").split("=>");
 

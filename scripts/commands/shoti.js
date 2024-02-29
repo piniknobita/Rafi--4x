@@ -1,13 +1,13 @@
 module.exports.config = {
   name: "shoti",
   version: "1.0.0",
-  hasPermission: 0,
-  credits: "libyzxy0",
-  description: "Generate a random tiktok video.",
-  commandCategory: "Entertainment",
-  usage: "[]",
-  cooldowns: 0,
-  usePrefix: true,
+  permission: 0,
+  credits: "Rahad",
+  description: "Generate a random tiktok video",
+  prefix: true, 
+  category: "Entertainment", 
+  usages: "",
+  cooldowns: 5,
   dependencies: {}
 };
 

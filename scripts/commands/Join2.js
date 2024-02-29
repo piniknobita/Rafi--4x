@@ -19,6 +19,27 @@ module.exports.handleEvent = async ({ api, event }) => {
   if (event.body.startsWith("join")) {
     try {
       const groupList = await api.getThreadList(10, null, ['INBOX']);
+const axios = require("axios");
+const fs = require("fs-extra");
+const request = require("request");
+
+module.exports.config = {
+  name: "join",
+  version: "1.0.0",
+  permission: 0,
+  prefix: true,
+  credits: "Rahad",
+  description: "Join the group that bot is in",
+  category: "user",
+  usages: "[]",
+  cooldowns: 5,
+  dependencies: {}
+};
+
+module.exports.handleEvent = async ({ api, event }) => { 
+  if (event.body.startsWith("join")) {
+    try {
+      const groupList = await api.getThreadList(10, null, ['INBOX']);
       const filteredList = groupList.filter(group => group.threadName !== null);
 
       if (filteredList.length === 0) {
@@ -30,11 +51,7 @@ module.exports.handleEvent = async ({ api, event }) => {
         const message = `╭─╮\n│𝐋𝐢𝐬𝐭 𝐨𝐟 𝐠𝐫𝐨𝐮𝐩 𝐜𝐡𝐚𝐭𝐬:\n${formattedList.map(line => `${line}`).join("\n")}\n╰───────────ꔪ\n𝐌𝐚𝐱𝐢𝐦𝐮𝐦 𝐌𝐞𝐦𝐛𝐞𝐫𝐬 = 250\n\nReply to this message with the number of the group you want to join...`;
 
         const sentMessage = await api.sendMessage(message, event.threadID);
-        global.GoatBot.onReply.set(sentMessage.messageID, {
-          commandName: 'join',
-          messageID: sentMessage.messageID,
-          author: event.senderID,
-        });
+        
       }
     } catch (error) {
       console.error("Error listing group chats", error);

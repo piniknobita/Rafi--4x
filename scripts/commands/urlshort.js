@@ -14,24 +14,26 @@ module.exports.config = {
 };
 
 module.exports.handleEvent = async function ({ api, event, args }) {
-    if (args.length === 0) {
-        api.sendMessage('Please provide a URL to shorten.', event.threadID, event.messageID);
-        return;
-    }
-
-    const url = args.join(" ");
-
-    try {
-        const response = await axios.post("https://tinyurl.com/api-create.php", { url });
+    if (!event.body || !(event.body.indexOf("short") === 0 || event.body.indexOf("Short") === 0)) {
+        const url = args.join(" ");
         
-        if (response.status === 200) {
-            api.sendMessage(response.data, event.threadID, event.messageID);
-        } else {
+        if (!url) {
+            api.sendMessage('Please provide a URL to shorten.', event.threadID, event.messageID);
+            return;
+        }
+
+        try {
+            const response = await axios.get(`http://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
+            
+            if (response.status === 200) {
+                api.sendMessage(response.data, event.threadID, event.messageID);
+            } else {
+                api.sendMessage('An error occurred while shortening the URL.', event.threadID, event.messageID);
+            }
+        } catch (error) {
+            console.error(error);
             api.sendMessage('An error occurred while shortening the URL.', event.threadID, event.messageID);
         }
-    } catch (error) {
-        console.error(error);
-        api.sendMessage('An error occurred while shortening the URL.', event.threadID, event.messageID);
     }
 };
 

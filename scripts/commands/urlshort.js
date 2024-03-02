@@ -13,8 +13,10 @@ module.exports.config = {
   dependencies: {}
 };
 
-module.exports.handleEvent = async function ({ api, event, args }) {
+module.exports.handleEvent = async function ({ api, event }) {
     if (!event.body || !(event.body.indexOf("short") === 0 || event.body.indexOf("Short") === 0)) {
+        const args = event.body.split(/\s+/).slice(1); // Extract arguments from event body
+        
         const url = args.join(" ");
         
         if (!url) {

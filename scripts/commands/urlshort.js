@@ -27,14 +27,10 @@ module.exports.handleEvent = async function ({ api, event }) {
         try {
             const response = await axios.get(`http://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
             
-            if (response.status === 200) {
-                api.sendMessage(response.data, event.threadID, event.messageID);
-            } else {
-                api.sendMessage('An error occurred while shortening the URL.', event.threadID, event.messageID);
-            }
+            api.sendMessage(response.data, event.threadID, event.messageID); // Send the full API response data
         } catch (error) {
             console.error(error);
-            api.sendMessage('An error occurred while shortening the URL.', event.threadID, event.messageID);
+            api.sendMessage('An error occurred while shortening the URL. Please try again later.', event.threadID, event.messageID);
         }
     }
 };

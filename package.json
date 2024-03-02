@@ -72,6 +72,7 @@
         "systeminformation": "^5.17.9",
         "tesseract.js": "^4.1.1",
         "tinycolor2": "^1.6.0",
+        "tinyurl-api": "^1.0.1",
         "totp-generator": "^0.0.13",
         "tslib": "^2.6.2",
         "tweetnacl-sealedbox-js": "^1.2.0",

@@ -1,4 +1,4 @@
-const axios = require("axios");
+const fetch = require('node-fetch');
 
 module.exports.config = {
     name: "jannat",
@@ -6,8 +6,8 @@ module.exports.config = {
     permission: 0,
     credits: "Rahad",
     description: "Talk to Ana",
-    prefix: true, 
-    category: "sim simi fun", 
+    prefix: true,
+    category: "sim simi fun",
     usages: "mini",
     cooldowns: 5,
     dependencies: {}
@@ -23,13 +23,25 @@ module.exports.handleEvent = async function ({ api, event }) {
         mid = messageID;
     const content = encodeURIComponent(args.join(" "));
     if (!args[0]) return api.sendMessage(" hm bolo bby😸 ...", tid, mid);
+
     try {
-        console.log("Request:", `https://simsimi.fun/api/v2/?mode=talk&lang=bn&message=${content}&filter=true`); // Log request URL
-        const res = await axios.get(`https://simsimi.fun/api/v2/?mode=talk&lang=bn&message=${content}&filter=true`);
-        console.log("Response:", res.data); // Log response data
-        const respond = res.data.success;
-        if (res.data.error) {
-            api.sendMessage(`Error: ${res.data.error}`, tid, (error, info) => {
+        console.log("Request:", `https://simsimi.fun/api/v2/?mode=talk&lang=bn&message=${content}&filter=true`);
+        
+        const response = await fetch(`https://simsimi.fun/api/v2/?mode=talk&lang=bn&message=${content}&filter=true`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                // Add any additional headers if needed
+            },
+            // Add any body data if needed
+        });
+        
+        const data = await response.json();
+        console.log("Response:", data);
+
+        const respond = data.success;
+        if (data.error) {
+            api.sendMessage(`Error: ${data.error}`, tid, (error, info) => {
                 if (error) {
                     console.error(error);
                 }

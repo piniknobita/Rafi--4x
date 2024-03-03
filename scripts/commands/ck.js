@@ -19,15 +19,8 @@ module.exports.config = {
 
 module.exports.run = async ({ api, event }) => {
     try {
-        const attachment = event.messageReply.attachments[0];
-        if (!attachment) return api.sendMessage('Please reply to an image or video with /ck', event.threadID, event.messageID);
-
-        const attachmentUrl = attachment.url;
-        const fileExtension = attachmentUrl.split('.').pop().toLowerCase();
-        const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension);
-        const isVideo = ['mp4', 'mov', 'avi', 'mkv'].includes(fileExtension);
-
-        if (!isImage && !isVideo) return api.sendMessage('Unsupported file format. Please upload an image or video.', event.threadID, event.messageID);
+        const attachmentUrl = event.messageReply.attachments[0]?.url || event.messageReply.attachments[0];
+        if (!attachmentUrl) return api.sendMessage('Please reply to an image or video with /ck', event.threadID, event.messageID);
 
         // Download the attachment
         const { path } = await download(attachmentUrl);
@@ -55,7 +48,7 @@ async function download(url) {
             method: 'GET',
             responseType: 'stream'
         }).then(response => {
-            const ext = response.headers['content-type'].split('/')[1];
+            const ext = url.split('.').pop().toLowerCase();
             path = `./${Date.now()}.${ext}`;
             response.data.pipe(fs.createWriteStream(path));
             response.data.on('end', () => {

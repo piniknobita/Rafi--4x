@@ -4,14 +4,14 @@ const FormData = require('form-data');
 const url = require('url');
 
 module.exports.config = {
-    name: "ck",
+    name: "imgur",
     version: "1.0.0",
     permission: 0,
     credits: "Rahad",
     description: "Uploads replied attachment to Imgur",
     prefix: true, 
-    category: "sim simi fun", 
-    usages: "mini",
+    category: "Video and images Imgur upload", 
+    usages: "imgur",
     cooldowns: 5,
     dependencies: {
         "axios": ""
@@ -21,9 +21,9 @@ module.exports.config = {
 module.exports.run = async ({ api, event }) => {
     try {
         const attachmentUrl = event.messageReply.attachments[0]?.url || event.messageReply.attachments[0];
-        if (!attachmentUrl) return api.sendMessage('Please reply to an image or video with /ck', event.threadID, event.messageID);
+        if (!attachmentUrl) return api.sendMessage('Please reply to an image or video with /imgur', event.threadID, event.messageID);
 
-        // Download the attachment
+        
         const { path } = await download(attachmentUrl);
 
         console.log('Attachment downloaded:', path);
@@ -33,8 +33,9 @@ module.exports.run = async ({ api, event }) => {
 
         console.log('Imgur link:', imgurLink);
 
-        // Send Imgur link as attachment
-        return api.sendMessage(imgurLink, event.threadID, event.messageID);
+        // Send Imgur link with custom formatting
+        const replyMessage = `╔═══════▣𝚁𝚊𝚑𝚊𝚍𝙱𝚘𝚝▣═══════╗\n\n     ${imgurLink}\n\n ╚═══════▣𝚁𝚊𝚑𝚊𝚍𝙱𝚘𝚝▣═══════╝`;
+        return api.sendMessage(replyMessage, event.threadID, event.messageID);
     } catch (error) {
         console.error('Error:', error.response?.data || error.message);
         return api.sendMessage('An error occurred while processing the attachment.', event.threadID, event.messageID);

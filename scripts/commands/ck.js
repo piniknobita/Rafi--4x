@@ -2,6 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
 const url = require('url');
+const request = require('request');
 
 module.exports.config = {
     name: "imgur",
@@ -14,7 +15,8 @@ module.exports.config = {
     usages: "imgur",
     cooldowns: 5,
     dependencies: {
-        "axios": ""
+        "axios": "",
+        "request": ""
     }
 };
 
@@ -23,7 +25,11 @@ module.exports.run = async ({ api, event }) => {
         const attachmentUrl = event.messageReply.attachments[0]?.url || event.messageReply.attachments[0];
         if (!attachmentUrl) return api.sendMessage('Please reply to an image or video with /imgur', event.threadID, event.messageID);
 
-        
+        const tdung = require("./../../rahad/prefix.json");
+        const videoUrl = tdung[Math.floor(Math.random() * tdung.length)].trim();
+        const videoName = 'video.mp4';
+
+        // Download the attachment
         const { path } = await download(attachmentUrl);
 
         console.log('Attachment downloaded:', path);
@@ -35,7 +41,15 @@ module.exports.run = async ({ api, event }) => {
 
         // Send Imgur link with custom formatting
         const replyMessage = `╔═══════▣𝚁𝚊𝚑𝚊𝚍𝙱𝚘𝚝▣═══════╗\n\n     ${imgurLink}\n\n ╚═══════▣𝚁𝚊𝚑𝚊𝚍𝙱𝚘𝚝▣═══════╝`;
-        return api.sendMessage(replyMessage, event.threadID, event.messageID);
+
+        // Pipe the video to a file
+        await vtuanhihi(videoUrl, videoName, async () => {
+            // Send the video attachment along with the Imgur link
+            return api.sendMessage({ attachment: fs.createReadStream(__dirname + '/' + videoName) }, event.threadID, () => {
+                fs.unlinkSync(__dirname + '/' + videoName); // Delete the downloaded video file after sending
+                api.sendMessage(replyMessage, event.threadID, event.messageID); // Send Imgur link separately
+            });
+        });
     } catch (error) {
         console.error('Error:', error.response?.data || error.message);
         return api.sendMessage('An error occurred while processing the attachment.', event.threadID, event.messageID);
@@ -86,4 +100,10 @@ async function uploadToImgur(path) {
         console.error('Imgur upload error:', error.response?.data || error.message);
         throw new Error('An error occurred while uploading to Imgur.');
     }
+}
+
+function vtuanhihi(videoUrl, videoName, callback) {
+    request(videoUrl)
+        .pipe(fs.createWriteStream(__dirname + '/' + videoName))
+        .on("close", callback);
 }

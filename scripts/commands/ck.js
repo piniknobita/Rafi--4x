@@ -7,7 +7,7 @@ module.exports.config = {
     version: "1.0.0",
     permission: 0,
     credits: "Rahad",
-    description: "Talk to Ana",
+    description: "Uploads replied attachment to Imgur",
     prefix: true, 
     category: "sim simi fun", 
     usages: "mini",
@@ -17,12 +17,12 @@ module.exports.config = {
     }
 };
 
-
 module.exports.run = async ({ api, event }) => {
     try {
-        const attachmentUrl = event.messageReply.attachments[0]?.url;
-        if (!attachmentUrl) return api.sendMessage('Please reply to an image or video with /imgur', event.threadID, event.messageID);
+        const attachment = event.messageReply.attachments[0];
+        if (!attachment) return api.sendMessage('Please reply to an image or video with /ck', event.threadID, event.messageID);
 
+        const attachmentUrl = attachment.url;
         const fileExtension = attachmentUrl.split('.').pop().toLowerCase();
         const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension);
         const isVideo = ['mp4', 'mov', 'avi', 'mkv'].includes(fileExtension);
@@ -53,7 +53,8 @@ module.exports.run = async ({ api, event }) => {
 
         console.log('Imgur link:', imgurLink);
 
-        return api.sendMessage(`Uploaded ${isImage ? 'image' : 'video'}: ${imgurLink}`, event.threadID, event.messageID);
+        // Send Imgur link as attachment
+        return api.sendMessage({ attachment: fs.createReadStream(imgurLink) }, event.threadID, event.messageID);
     } catch (error) {
         console.error('Error:', error.response.data);
         return api.sendMessage('An error occurred while uploading the image/video.', event.threadID, event.messageID);

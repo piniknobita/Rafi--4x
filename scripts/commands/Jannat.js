@@ -1,16 +1,16 @@
 const axios = require("axios");
 
 module.exports.config = {
-  name: "jannat",
-  version: "1.0.0",
-  permission: 0,
-  credits: "Rahad",
-  description: "Talk to Ana",
-  prefix: true, 
-  category: "sim simi fun", 
-  usages: "mini",
-  cooldowns: 5,
-  dependencies: {}
+    name: "jannat",
+    version: "1.0.0",
+    permission: 0,
+    credits: "Rahad",
+    description: "Talk to Ana",
+    prefix: true, 
+    category: "sim simi fun", 
+    usages: "mini",
+    cooldowns: 5,
+    dependencies: {}
 };
 
 module.exports.handleEvent = async function ({ api, event }) {
@@ -25,6 +25,7 @@ module.exports.handleEvent = async function ({ api, event }) {
     if (!args[0]) return api.sendMessage(" hm bolo bby😸 ...", tid, mid);
     try {
         const res = await axios.get(`https://simsimi.fun/api/v2/?mode=talk&lang=bn&message=${content}&filter=true`);
+        console.log(res.data); // Log the response data to console
         const respond = res.data.success;
         if (res.data.error) {
             api.sendMessage(`Error: ${res.data.error}`, tid, (error, info) => {

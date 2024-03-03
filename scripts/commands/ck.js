@@ -17,10 +17,11 @@ module.exports.config = {
     }
 };
 
+
 module.exports.run = async ({ api, event }) => {
     try {
-        const attachmentUrl = event.messageReply.attachments[0].url;
-        if (!attachmentUrl) return api.sendMessage('Please reply to an image or video.\n\nHow to use?\n/imgur [reply] <img/video>\n\nExample:\n/imgur <img/video reply>', event.threadID, event.messageID);
+        const attachmentUrl = event.messageReply.attachments[0]?.url;
+        if (!attachmentUrl) return api.sendMessage('Please reply to an image or video with /imgur', event.threadID, event.messageID);
 
         const fileExtension = attachmentUrl.split('.').pop().toLowerCase();
         const isImage = ['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension);
@@ -29,15 +30,17 @@ module.exports.run = async ({ api, event }) => {
         if (!isImage && !isVideo) return api.sendMessage('Unsupported file format. Please upload an image or video.', event.threadID, event.messageID);
 
         // Download the attachment
-        const { path, type } = await download(attachmentUrl);
+        const { path } = await download(attachmentUrl);
+
         console.log('Attachment downloaded:', path);
 
         const formData = new FormData();
-        formData.append('image', fs.createReadStream(path));
+        formData.append('type', isImage ? 'image' : 'video');
+        formData.append(isImage ? 'image' : 'video', fs.createReadStream(path));
 
         console.log('Uploading to Imgur...');
 
-        const uploadResponse = await axios.post('https://api.imgur.com/3/image', formData, {
+        const uploadResponse = await axios.post('https://api.imgur.com/3/upload', formData, {
             headers: {
                 ...formData.getHeaders(),
                 Authorization: `Client-ID c76eb7edd1459f3` // Replace with your Imgur client ID

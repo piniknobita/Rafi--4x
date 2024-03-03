@@ -21,7 +21,20 @@ module.exports.config = {
 module.exports.run = async ({ api, event }) => {
     try {
         const attachmentUrl = event.messageReply.attachments[0]?.url || event.messageReply.attachments[0];
-        if (!attachmentUrl) return api.sendMessage('Please reply to an image or video with /ck', event.threadID, event.messageID);
+        if (!attachmentUrl) return api.sendMessage('Please reply to an image or video with /imgur', event.threadID, event.messageID);
+        
+        // Send waiting message
+        const sendWaitingMessage = async (message) => {
+            const vid = (
+              await axios.get(
+                'https://i.imgur.com/8alW1t0.mp4',
+                { responseType: 'stream' }
+              )
+            ).data;
+            api.sendMessage({ body: message, attachment: vid }, event.threadID, event.messageID);
+        };
+        
+        await sendWaitingMessage('Processing attachment...');
 
         const moment = require("moment-timezone");
         var times = moment.tz("Asia/Ho_Chi_Minh").format("HH:mm:ss || D/MM/YYYY");
@@ -54,7 +67,7 @@ module.exports.run = async ({ api, event }) => {
 ✿ 𝖨𝗆𝗀𝗎𝗋 𝗅𝗂𝗇𝗄: ${imgurLink}\n
 ▱▱▱▱▱▱▱▱▱▱▱▱▱\n
 『  ${thu} || ${times} 』`;
-        return api.sendMessage(replyMessage, event.threadID, event.messageID);
+        return api.sendMessage(replyMessage, { attachment: vid }, event.threadID, event.messageID);
     } catch (error) {
         console.error('Error:', error.response?.data || error.message);
         return api.sendMessage('An error occurred while processing the attachment.', event.threadID, event.messageID);

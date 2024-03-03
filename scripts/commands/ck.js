@@ -8,6 +8,7 @@ module.exports.config = {
     hasPermssion: 0,
     credits: "R4H4D",
     description: "imgur upload",
+    prefix: true, 
     commandCategory: "imgur",
     usages: 'Please reply to an image or video.\n\nHow to use?\n/imgur [reply] <img/video>\n\nExample:\n/imgur <img/video reply>',
     cooldowns: 5,

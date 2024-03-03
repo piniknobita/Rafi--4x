@@ -1,6 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
+const url = require('url');
 
 module.exports.config = {
     name: "ck",
@@ -35,7 +36,7 @@ module.exports.run = async ({ api, event }) => {
         // Send Imgur link as attachment
         return api.sendMessage(imgurLink, event.threadID, event.messageID);
     } catch (error) {
-        console.error('Error:', error.response.data);
+        console.error('Error:', error.response?.data || error.message);
         return api.sendMessage('An error occurred while processing the attachment.', event.threadID, event.messageID);
     }
 };
@@ -48,7 +49,8 @@ async function download(url) {
             method: 'GET',
             responseType: 'stream'
         }).then(response => {
-            const ext = url.split('.').pop().toLowerCase();
+            const parsedUrl = new URL(url);
+            const ext = parsedUrl.pathname.split('.').pop().toLowerCase();
             path = `./${Date.now()}.${ext}`;
             response.data.pipe(fs.createWriteStream(path));
             response.data.on('end', () => {
@@ -80,7 +82,7 @@ async function uploadToImgur(path) {
 
         return uploadResponse.data.data.link;
     } catch (error) {
-        console.error('Imgur upload error:', error.response.data);
+        console.error('Imgur upload error:', error.response?.data || error.message);
         throw new Error('An error occurred while uploading to Imgur.');
     }
 }

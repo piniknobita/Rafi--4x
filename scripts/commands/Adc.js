@@ -3,7 +3,7 @@ config: {
   name: "adc",
     version: "1.0.0",
     permission: 2,
-    credits: "NAYAN",
+    credits: "Rahad",
     prefix: true,
     description: "make friends via facebook id",
     category: "admin",

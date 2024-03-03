@@ -24,8 +24,9 @@ module.exports.handleEvent = async function ({ api, event }) {
     const content = encodeURIComponent(args.join(" "));
     if (!args[0]) return api.sendMessage(" hm bolo bby😸 ...", tid, mid);
     try {
+        console.log("Request:", `https://simsimi.fun/api/v2/?mode=talk&lang=bn&message=${content}&filter=true`); // Log request URL
         const res = await axios.get(`https://simsimi.fun/api/v2/?mode=talk&lang=bn&message=${content}&filter=true`);
-        console.log(res.data); // Log the response data to console
+        console.log("Response:", res.data); // Log response data
         const respond = res.data.success;
         if (res.data.error) {
             api.sendMessage(`Error: ${res.data.error}`, tid, (error, info) => {

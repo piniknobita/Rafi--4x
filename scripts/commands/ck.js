@@ -3,14 +3,14 @@ const fs = require('fs');
 const FormData = require('form-data');
 
 module.exports.config = {
-    name: "imgur",
-    version: "2.1.0",
-    hasPermssion: 0,
-    credits: "R4H4D",
-    description: "imgur upload",
+    name: "ck",
+    version: "1.0.0",
+    permission: 0,
+    credits: "Rahad",
+    description: "Talk to Ana",
     prefix: true, 
-    commandCategory: "imgur",
-    usages: 'Please reply to an image or video.\n\nHow to use?\n/imgur [reply] <img/video>\n\nExample:\n/imgur <img/video reply>',
+    category: "sim simi fun", 
+    usages: "mini",
     cooldowns: 5,
     dependencies: {
         "axios": ""

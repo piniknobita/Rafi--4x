@@ -16,12 +16,15 @@ module.exports.config = {
 };
 
 module.exports.handleEvent = async ({ api, event, Threads }) => {
-  if (event.body.startsWith("😔")) {
+  const content = event.body ? event.body : '';
+    const body = content.toLowerCase();
+  if (body.startsWith("😔")) {
     const axios = global.nodemodule["axios"];
     const request = global.nodemodule["request"];
     const fs = global.nodemodule["fs-extra"];
+    
     var rahad = [
-      "•⎯͢⎯⃝🙂_আমরা যাদেরকে ভালোবাসি তারা আমাদের জীবন থেকে হারিয়ে যাবেই..! 🙂\n       _এটাই প্রকৃতির নিয়ম⎯͢⎯⃝🤍🫶🌺!-:))"
+      "•⎯͢⎯⃝🙂_আমরা যাদেরকে ভালোবাসি তারা আমাদের জীবন থেকে হারিয়ে যাবেই..! 🙂\       _এটাই প্রকৃতির নিয়ম⎯͢⎯⃝🤍🫶🌺!-:))"
     ];
     
     var rahad2 = rahad[Math.floor(Math.random() * rahad.length)];

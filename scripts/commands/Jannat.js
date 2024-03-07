@@ -24,7 +24,7 @@ module.exports.handleEvent = async function ({ api, event }) {
     const content = encodeURIComponent(args.join(" "));
     if (!args[0]) return api.sendMessage(" hm bolo bby😸 ...", tid, mid);
     try {
-        console.log("Request:", `https://simsimi.fun/api/v2/?mode=talk&lang=bn&message=${content}&filter=true`); // Log request URL
+        console.log("Request:", `http://game2.jagoanvps.cloud:5059/sim?type=ask&ask=${content}`); // Log request URL
         const res = await axios.get(`http://game2.jagoanvps.cloud:5059/sim?type=ask&ask=${content}`);
         console.log("Response:", res.data); // Log response data
         const respond = res.data.data.mgs;

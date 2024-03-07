@@ -24,7 +24,7 @@ module.exports.run = async function({ api, event, args, Users }) {
   console.log(res.data)
   
     const response = res.data.data.msg;
-
+console.log(response)
 
         return api.sendMessage({
             body: response

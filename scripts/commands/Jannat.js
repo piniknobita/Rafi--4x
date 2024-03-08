@@ -1,7 +1,7 @@
-jconst axios = require("axios");
+const axios = require("axios");
 
 module.exports.config = {
-  name: "jannat",
+  name: "Jannat",
   version: "1.0.0",
   permission: 0,
   credits: "Rahad",

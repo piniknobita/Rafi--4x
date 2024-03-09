@@ -14,7 +14,7 @@ module.exports.config = {
 };
 
 module.exports.run = async ({ api, event, args }) => {
-  const filePath = "./../../rahad/prefix.json"; // Corrected file path
+  const filePath = "./../../rahad/all.json"; // Corrected file path
   
   try {
     const fileData = fs.readFileSync(filePath, "utf-8");

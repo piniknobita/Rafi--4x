@@ -7,14 +7,14 @@ module.exports.config = {
   credits: "Rahad",
   description: "poddoja upornas",
   prefix: true, 
-  category: " text", 
+  category: "text", // Removed space
   usages: "<number page>",
   cooldowns: 5,
   dependencies: {}
 };
 
 module.exports.run = async ({ api, event, args }) => {
-  const filePath = "./All.json";
+  const filePath = "./../../rahad/prefix.json"; // Corrected file path
   
   try {
     const fileData = fs.readFileSync(filePath, "utf-8");
@@ -32,7 +32,7 @@ module.exports.run = async ({ api, event, args }) => {
     const pageContent = pages[`Page${pageNumber}`];
     api.sendMessage(pageContent, event.threadID);
   } catch (error) {
-    console.error("Error reading All.json:", error);
+    console.error("Error reading prefix.json:", error); // Updated error message
     return api.sendMessage("An error occurred while processing your request.", event.threadID);
   }
 };

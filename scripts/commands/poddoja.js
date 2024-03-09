@@ -6,33 +6,34 @@ module.exports.config = {
   permission: 0,
   credits: "Rahad",
   description: "poddoja upornas",
-  prefix: true, 
-  category: "text", // Removed space
+  prefix: true,
+  category: "text",
   usages: "<number page>",
   cooldowns: 5,
   dependencies: {}
 };
 
 module.exports.run = async ({ api, event, args }) => {
-  const filePath = "./../../rahad/all.json"; // Corrected file path
-  
+  const filePath = "./../../rahad/prefix.txt"; // Adjusted file path to point to the text file
+
   try {
     const fileData = fs.readFileSync(filePath, "utf-8");
-    const pages = JSON.parse(fileData);
+    const pages = fileData.split("\n\n"); // Split pages by double line breaks
 
     if (args.length === 0 || isNaN(args[0])) {
       return api.sendMessage("Please provide a valid page number.", event.threadID);
     }
 
     const pageNumber = parseInt(args[0]);
-    if (!pages[`Page${pageNumber}`]) {
+    if (pageNumber < 1 || pageNumber > pages.length) {
       return api.sendMessage("Page not found.", event.threadID);
     }
 
-    const pageContent = pages[`Page${pageNumber}`];
+    const pageIndex = pageNumber - 1; // Adjust index to match array indexing
+    const pageContent = pages[pageIndex];
     api.sendMessage(pageContent, event.threadID);
   } catch (error) {
-    console.error("Error reading prefix.json:", error); // Updated error message
+    console.error("Error reading prefix.txt:", error);
     return api.sendMessage("An error occurred while processing your request.", event.threadID);
   }
 };

@@ -14,12 +14,10 @@ module.exports.config = {
 };
 
 module.exports.run = async ({ api, event, args }) => {
-  const filePath = "./../../rahad/prefix.txt"; // Adjusted file path to point to the text file
-
+  const filePath = "./../../rahad/prefix.txt"; 
   try {
     const fileData = fs.readFileSync(filePath, "utf-8");
-    const pages = fileData.split("\n\n"); // Split pages by double line breaks
-
+    const pages = fileData.split("\n\n"); 
     if (args.length === 0 || isNaN(args[0])) {
       return api.sendMessage("Please provide a valid page number.", event.threadID);
     }
@@ -29,7 +27,7 @@ module.exports.run = async ({ api, event, args }) => {
       return api.sendMessage("Page not found.", event.threadID);
     }
 
-    const pageIndex = pageNumber - 1; // Adjust index to match array indexing
+    const pageIndex = pageNumber - 1; 
     const pageContent = pages[pageIndex];
     api.sendMessage(pageContent, event.threadID);
   } catch (error) {

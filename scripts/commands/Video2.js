@@ -1,5 +1,5 @@
 module.exports.config = {
-  name: "video2",
+  name: "Albam",
 	version: "0.0.2",
 	permission: 0,
   prefix: true,

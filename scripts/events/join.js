@@ -54,7 +54,7 @@ let gifPath = __dirname + '/Nayan/join/join.gif';
 axios.get(gifUrl, { responseType: 'arraybuffer' })
 .then(response => {
     fs.writeFileSync(gifPath, response.data);
-    return api.sendMessage("চলে এসেছি আমি রাহাদ বট🥀😉", event.threadID, () => api.sendMessage({ body: `${global.config.BOTNAME} 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 ↤
+    return api.sendMessage("𝐈𝐌 𝐊𝐀𝐁𝐈𝐑 𝐂𝐎𝐌𝐄😍", event.threadID, () => api.sendMessage({ body: `${global.config.BOTNAME} 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 ↤
 🌱আ্ঁ'স্ঁ'সা্ঁ'লা্ঁ'মু্ঁ ও্ঁ'য়া্ঁ'লা্ঁ'ই্ঁ'কু্ঁ'ম্ঁ🥀🌼
 <------------------------------>  
 𝗕𝗼𝘁 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 𝗦𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹 !!! 
@@ -67,18 +67,18 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
 <<<<<------------------------------>>>>>
 𝗔𝗻𝗱 𝗙𝗼𝗿 𝗔𝗻𝘆 𝗥𝗲𝗽𝗼𝗿𝘁 𝗢𝗿 𝗖𝗼𝗻𝘁𝗮𝗰𝘁 𝗕𝗼𝘁 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿
 
-۞ 𝗢𝘄𝗻𝗲𝗿 : 𝗠𝗼𝗵𝗮𝗺𝗺𝗮𝗱 𝗥𝗮𝗵𝗮𝗱 
+۞ 𝗢𝘄𝗻𝗲𝗿 : 𝐌𝐨𝐡𝐚𝐦𝐦𝐚𝐝_𝐊𝐚𝐛𝐢𝐫
 
-✷ 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸: 
-https://www.facebook.com/md.rahad.hosain18
+✷ 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸: https://www.facebook.com/profile.php?id=1000
 
-❊ 𝗣𝗮𝗿𝘀𝗼𝗻𝗮𝗹 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 : m.me/www.xnx.com9
 
-✲ 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺: t.me/rabbyhosainRahad
+❊ 𝗣𝗮𝗿𝘀𝗼𝗻𝗮𝗹 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 : m.me/100084055393
 
-❁ 𝗘𝗺𝗮𝗶𝗹: mdrahadhosain00@gmail.com
+✲ 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺: t.me/Ra'fu Oke'yh 
 
-✿ 𝗪𝗣: 0131328**62`, attachment: fs.createReadStream(gifPath)}, threadID));
+❁ 𝗘𝗺𝗮𝗶𝗹: mohamedkabir01619@gmail.co
+
+✿ 𝗪𝗣: 01619452338`, attachment: fs.createReadStream(gifPath)}, threadID));
 })
 .catch(error => {
     console.error(error);
@@ -107,85 +107,4 @@ https://www.facebook.com/md.rahad.hosain18
       for (let o = 0; o < event.logMessageData.addedParticipants.length; o++) {
         let pathImg = __dirname + `/Nayan/join/${o}.png`;
         let pathAva = __dirname + `/Nayan/join/avt.png`;
-        let avtAnime = (await axios.get(encodeURI(
-          `https://graph.facebook.com/${event.logMessageData.addedParticipants[o].userFbId}/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`), { responseType: "arraybuffer" })).data;
-        var ok = [
-          'https://i.imgur.com/dDSh0wc.jpeg',
-          'https://i.imgur.com/UucSRWJ.jpeg',
-          'https://i.imgur.com/OYzHKNE.jpeg',
-          'https://i.imgur.com/V5L9dPi.jpeg',
-          'https://i.imgur.com/M7HEAMA.jpeg'
-        ]
-        let background = (await axios.get(encodeURI(`${ok[Math.floor(Math.random() * ok.length)]}`), { responseType: "arraybuffer", })).data;
-        fs.writeFileSync(pathAva, Buffer.from(avtAnime, "utf-8"));
-        fs.writeFileSync(pathImg, Buffer.from(background, "utf-8"));
-        var avatar = await this.circle(pathAva);
-        let baseImage = await loadImage(pathImg);
-        let baseAva = await loadImage(avatar);
-        registerFont(__dirname + `/Nayan/font/Semi.ttf`, {
-          family: "Semi"
-        });
-        let canvas = createCanvas(1902, 1082);
-        console.log(canvas.width, canvas.height)
-        let ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(baseImage, 0, 0, canvas.width, canvas.height);
-        ctx.drawImage(baseAva, canvas.width / 2 - 188, canvas.height / 2 - 375, 375, 355);
-        ctx.fillStyle = "#FFF";
-        ctx.textAlign = "center";
-        ctx.font = `155px Semi`;
-        ctx.fillText(`${event.logMessageData.addedParticipants[o].fullName}`, canvas.width / 2 + 20, canvas.height / 2 + 100);
-        ctx.save();
-        ctx.font = `75px Semi`;
-        ctx.fillText(`Welcome to ${threadName}`, canvas.width / 2 - 15, canvas.height / 2 + 235)
-        const number = participantIDs.length - o;
-
-        if (number === 11 || number === 12 || number === 13) {
-          suffix = "th";
-        } else {
-          const lastDigit = number % 10;
-          switch (lastDigit) {
-            case 1:
-              suffix = "st";
-              break;
-            case 2:
-              suffix = "nd";
-              break;
-            case 3:
-              suffix = "rd";
-              break;
-            default:
-              suffix = "th";
-              break;
-          }
-        }
-
-        ctx.fillText(`You are the ${number}${suffix} member of this group`, canvas.width / 2 - 15, canvas.height / 2 + 350);
-        ctx.restore();
-        const imageBuffer = canvas.toBuffer();
-        fs.writeFileSync(pathImg, imageBuffer);
-        abx.push(fs.createReadStream(__dirname + `/Nayan/join/${o}.png`))
-      }
-      memLength.sort((a, b) => a - b);
-      (typeof threadData.customJoin == "undefined") ? msg = `Hello {name}\nWelcome to {threadName}\nyou're the {soThanhVien}th member on this group please enjoy"\n─────────────────\n[ {time} - {thu} ]` : msg = threadData.customJoin;
-      var nameAuthor = await Users.getNameUser(event.author)
-      msg = msg
-        .replace(/\{iduser}/g, iduser.join(', '))
-        .replace(/\{name}/g, nameArray.join(', '))
-        .replace(/\{type}/g, (memLength.length > 1) ? 'You' : 'You')
-        .replace(/\{soThanhVien}/g, memLength.join(', '))
-        .replace(/\{threadName}/g, threadName)
-        .replace(/\{author}/g, nameAuthor)
-        .replace(/\{uidAuthor}/g, event.author)
-        .replace(/\{buoi}/g, session)
-        .replace(/\{time}/g, time)
-        .replace(/\{thu}/g, thu);
-
-      var formPush = { body: msg, attachment: abx, mentions }
-      api.sendMessage(formPush, threadID);
-      for (let ii = 0; ii < parseInt(id.length); ii++) {
-        fs.unlinkSync(__dirname + `/Nayan/join/${ii}.png`)
-      }
-    } catch (e) { return console.log(e) };
-  }
-}
+        let avtAnime = (await

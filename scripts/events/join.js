@@ -48,37 +48,31 @@ module.exports.run = async function({ api, event, Users }) {
   if (event.logMessageData.addedParticipants && Array.isArray(event.logMessageData.addedParticipants) && event.logMessageData.addedParticipants.some(i => i.userFbId == api.getCurrentUserID())) {
     //api.changeNickname(`𝗕𝗢𝗧 ${(!global.config.BOTNAME) ? "Buddy" : global.config.BOTNAME}`, threadID, api.getCurrentUserID());
 
-    let gifUrl = 'https://drive.google.com/uc?id=1QrSCgq16zgsLddZFyM6Tj-9W2iW5psVT';
+    let gifUrl = 'https://i.postimg.cc/SNQXkB0y/lv-0-20231018174834.gif';
 let gifPath = __dirname + '/Nayan/join/join.gif';
 
 axios.get(gifUrl, { responseType: 'arraybuffer' })
 .then(response => {
     fs.writeFileSync(gifPath, response.data);
-    return api.sendMessage("𝐈𝐌 𝐊𝐀𝐁𝐈𝐑 𝐂𝐎𝐌𝐄😍", event.threadID, () => api.sendMessage({ body: `${global.config.BOTNAME} 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 ↤
-🌱আ্ঁ'স্ঁ'সা্ঁ'লা্ঁ'মু্ঁ ও্ঁ'য়া্ঁ'লা্ঁ'ই্ঁ'কু্ঁ'ম্ঁ🥀🌼
+    return api.sendMessage("চলে এসেছি আমি পিচ্চি কাবির তোমাদের মাঝে🤭!", event.threadID, () => api.sendMessage({ body: `${global.config.BOTNAME} CONNECTED«\n\nAssalamualaykum☘️
 <------------------------------>  
-𝗕𝗼𝘁 𝗖𝗼𝗻𝗻𝗲𝗰𝘁𝗲𝗱 𝗦𝘂𝗰𝗰𝗲𝘀𝗳𝘂𝗹 !!! 
+BOT CONNECTED SUCCESFUL !!! 
 
-𝗔𝗽𝗽𝗿𝗼𝘃𝗮𝗹 𝗔𝗹𝗹𝗼𝘄 𝗜𝗻 𝗧𝗵𝗶𝘀 𝗚𝗿𝗼𝘂𝗽 !!!
+APPROVAL ALLOW IN THIS GROUP!!!
+<------------------------------>\n\nTO VIEW ANY COMMAND Use👉${global.config.PREFIX}help\nSee command👉 ${global.config.PREFIX}command
+\n\EXAMPLE:👇\n${global.config.PREFIX}admin (information)\n${global.config.PREFIX}islam (video)\n${global.config.PREFIX}tik (link)\n${global.config.PREFIX}fbvideo (link)
 <------------------------------>
+AND FOR ANY COMPLAINTS OR CONTACT BOT OPERATOR 
 
-𝗨𝘀𝗲 𝗛𝗲𝗹𝗽 𝗧𝗼 𝗦𝗲𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱 
-\n\n𝗨𝘀𝗲 ${global.config.PREFIX}𝗛𝗲𝗹𝗽 𝗧𝗼 𝗦𝗲𝗲 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀.\n\n𝗘𝘅𝗮𝗺𝗽𝗹𝗲:\n${global.config.PREFIX}𝗛𝗮𝗱𝗶𝘀(𝗧𝗲𝘅𝘁)\n${global.config.PREFIX}𝗦𝘁𝗮𝘁𝘂𝘀 (𝗦𝘁𝗮𝘁𝘂𝘀 𝘃𝗶𝗱𝗲𝗼)\n${global.config.PREFIX}𝗛𝗲𝗹𝗽 (𝗖𝗼𝗺𝗺𝗮𝗻𝗱)\n${global.config.PREFIX}𝗜𝗻𝗳𝗼 
-<<<<<------------------------------>>>>>
-𝗔𝗻𝗱 𝗙𝗼𝗿 𝗔𝗻𝘆 𝗥𝗲𝗽𝗼𝗿𝘁 𝗢𝗿 𝗖𝗼𝗻𝘁𝗮𝗰𝘁 𝗕𝗼𝘁 𝗗𝗲𝘃𝗲𝗹𝗼𝗽𝗲𝗿
+DEVELOPER :Kabir 
 
-۞ 𝗢𝘄𝗻𝗲𝗿 : 𝐌𝐨𝐡𝐚𝐦𝐦𝐚𝐝_𝐊𝐚𝐛𝐢𝐫
+🟣Facebook Account Link: 
 
-✷ 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸: https://www.facebook.com/profile.php?id=1000
+https://www.facebook.com/KABIR.TOR.ABBU
 
+🔵WHATSAPP NUMBER: wa.me/+8801619452338
 
-❊ 𝗣𝗮𝗿𝘀𝗼𝗻𝗮𝗹 𝗙𝗮𝗰𝗲𝗯𝗼𝗼𝗸 : m.me/100084055393
-
-✲ 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺: t.me/Ra'fu Oke'yh 
-
-❁ 𝗘𝗺𝗮𝗶𝗹: mohamedkabir01619@gmail.co
-
-✿ 𝗪𝗣: 01619452338`, attachment: fs.createReadStream(gifPath)}, threadID));
+🟢SUPPORT EMAIL:mohamedkabir01619@gmail.com`, attachment: fs.createReadStream(gifPath)}, threadID));
 })
 .catch(error => {
     console.error(error);
@@ -107,4 +101,24 @@ axios.get(gifUrl, { responseType: 'arraybuffer' })
       for (let o = 0; o < event.logMessageData.addedParticipants.length; o++) {
         let pathImg = __dirname + `/Nayan/join/${o}.png`;
         let pathAva = __dirname + `/Nayan/join/avt.png`;
-        let avtAnime = (await
+        let avtAnime = (await axios.get(encodeURI(
+          `https://graph.facebook.com/${event.logMessageData.addedParticipants[o].userFbId}/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`), { responseType: "arraybuffer" })).data;
+        var ok = [
+          'https://i.imgur.com/S4toz7d.jpeg',
+          'https://i.imgur.com/ypvAQAR.jpeg',
+          'https://i.imgur.com/S4toz7d.jpeg',
+          'https://i.imgur.com/ypvAQAR.jpeg',
+          'https://i.imgur.com/S4toz7d.jpeg'
+        ]
+        let background = (await axios.get(encodeURI(`${ok[Math.floor(Math.random() * ok.length)]}`), { responseType: "arraybuffer", })).data;
+        fs.writeFileSync(pathAva, Buffer.from(avtAnime, "utf-8"));
+        fs.writeFileSync(pathImg, Buffer.from(background, "utf-8"));
+        var avatar = await this.circle(pathAva);
+        let baseImage = await loadImage(pathImg);
+        let baseAva = await loadImage(avatar);
+        registerFont(__dirname + `/Nayan/font/Semi.ttf`, {
+          family: "Semi"
+        });
+        let canvas = createCanvas(1902, 1082);
+        console.log(canvas.width, canvas.height)
+    

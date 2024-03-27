@@ -28,19 +28,26 @@ var juswa = moment.tz("Asia/Dhaka").format("『D/MM/YYYY』 【hh:mm:ss】");
   
 var callback = () => api.sendMessage({body:`
 --------------------------------------------
-𝐍𝐚𝐦𝐞       : 𝐌𝐨𝐡𝐚𝐦𝐦𝐚𝐝 𝐊𝐚𝐛𝐢𝐫
-𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 : 𝐌𝐨𝐡𝐚𝐦𝐦𝐚𝐝 𝐊𝐚𝐛𝐢𝐫
-𝐑𝐞𝐥𝐢𝐠𝐢𝐨𝐧   : 𝐈𝐬𝐥𝐚𝐦
-𝐏𝐞𝐫𝐦𝐚𝐧𝐞𝐧𝐭 𝐀𝐝𝐝𝐫𝐞𝐬𝐬: 𝐌𝐲𝐦𝐞𝐧𝐬𝐢𝐧𝐠, 𝐃𝐡𝐚𝐤𝐚
-𝐂𝐮𝐫𝐫𝐞𝐧𝐭 𝐀𝐝𝐝𝐫𝐞𝐬𝐬: 𝐌𝐲𝐦𝐞𝐧𝐬𝐢𝐧𝐠, 𝐃𝐡𝐚𝐤𝐚 𝐁𝐲𝐩𝐚𝐬𝐬
-𝐆𝐞𝐧𝐝𝐞𝐫.   : 𝐌𝐚𝐥𝐞
-𝐀𝐠𝐞           : 𝟏𝟖+
-𝐑𝐞𝐥𝐚𝐭𝐢𝐨𝐧𝐬𝐡𝐢𝐩 : 𝐒𝐢𝐧𝐠𝐥𝐞
-𝐖𝐨𝐫𝐤        : 𝐒𝐭𝐮𝐝𝐞𝐧𝐭
-𝐆𝐦𝐚𝐢𝐥       : mohamedkabir01619@gmail.com
-𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩: wa.me/+8801619452338
-𝐓𝐞𝐥𝐞𝐠𝐫𝐚𝐦  : t.me/Rafi1231
-𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐋𝐢𝐧𝐤 : https://www.facebook.com/profile.php?id=100084055394893`,attachment: fs.createReadStream(__dirname + "/cache/1.png")}, event.threadID, () => 
+𝐍𝐚𝐦𝐞•—»✨𝐀𝐝𝐦𝐢𝐧 𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧-!!✨
+
+༊_۵༎-𝐂-𝐄-𝐎 🩷⃝🌼 𝐌𝐨𝐡𝐚𝐦𝐦𝐚𝐝_𝐊𝐚𝐛𝐢𝐫<😻😽>] 🩷
+
+𝐂𝐀𝐋𝐋 𝐌𝐄:𒁍 ⃝𓆩𝐌𝐀𝐅𝐈𝐘𝐀𓆪⸙🥷
+
+•┄┅══❁𝐂𝐨𝐧𝐭𝐚𝐜𝐭❁══┅┄• 
+𝐅𝐚𝐜𝐞𝐛𝐨𝐨𝐤 𝐈𝐝: https://www.facebook.com/profile.php?id=100084055394893
+
+•—»✨𝐎𝐭𝐡𝐞𝐫 𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧✨«—•
+
+𝐓𝐔𝐏𝐄 / 𝐀𝐃𝐌𝐈𝐍 
+
+𝐁𝐎𝐓 𝐏𝐑𝐄𝐅𝐈𝐗 : [${global.config.PREFIX}]
+
+𝐓𝐎𝐃𝐀𝐘 𝐈𝐒 𝐓𝐈𝐌𝐄 : ${juswa} 
+
+𝐁𝐎𝐓 𝐈𝐒 𝐑𝐔𝐍𝐍𝐈𝐍𝐆 ${hours}:${minutes}:${seconds}.
+
+𝐓𝐡𝐚𝐧𝐤𝐬 𝐅𝐨𝐫 𝐔𝐬𝐢𝐧𝐠  ༄🌺\n[ 🩷 ]${global.config.BOTNAME}`,attachment: fs.createReadStream(__dirname + "/cache/1.png")}, event.threadID, () => 
     fs.unlinkSync(__dirname + "/cache/1.png"));  
       return request(encodeURI(`https://graph.facebook.com/100084055394893/picture?height=720&width=720&access_token=6628568379%7Cc1e620fa708a1d5696fb991c1bde5662`)).pipe(
 fs.createWriteStream(__dirname+'/cache/1.png')).on('close',() => callback());

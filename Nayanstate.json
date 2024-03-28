@@ -1,47 +1,128 @@
-module.exports.config = {
-  name: "random",
-	version: "0.0.2",
-	permission: 0,
-  prefix: true,
-	credits: "Nayan",
-	description: "random video",
-	category: "admin",
-	usages: "",
-    cooldowns: 5,
-};
-
-
-
-
-
-module.exports.run = async function({ api, event, args }) {
-    const axios = require("axios")
-    const request = require("request")
-    const fs = require("fs-extra")
-    const { NAYAN } = global.apiNayan;
-	const apis = await axios.get('https://raw.githubusercontent.com/MR-NAYAN-404/NAYAN-BOT/main/api.json')
-  const n = apis.data.api
-    const res = await axios.get(`${n}/video/mixvideo`);
-    var data = res.data.url;
-    var msg = [];
-    let video = `${res.data.url.url}`;
-  let name = `${res.data.url.name}`;
-    let cp = `${res.data.cp}`
-  let ln = `${res.data.length}`
-
-    let videos = (await axios.get(`${video}`, {
-        responseType: 'arraybuffer'
-    })).data;
-    fs.writeFileSync(__dirname + "/cache/video.mp4", Buffer.from(videos, "utf-8"));
-    var allimage = [];
-    allimage.push(fs.createReadStream(__dirname + "/cache/video.mp4"));
-	
+[
     {
-        msg += `${cp}\n\n𝐓𝐨𝐭𝐚𝐥 𝐕𝐢𝐝𝐞𝐨𝐬: [${ln}]\n𝐀𝐝𝐝𝐞𝐝 𝐓𝐡𝐢𝐬 𝐕𝐢𝐝𝐞𝐨 𝐓𝐨 𝐓𝐡𝐞 𝐀𝐩𝐢 𝐁𝐲 [${name}]`
+        "key": "dbln",
+        "value": "%7B%2261557353768871%22%3A%22RQxMl1Im%22%2C%22100031007319165%22%3A%22mGwj4AgV%22%2C%22100084055394893%22%3A%22SS41uZBj%22%7D",
+        "domain": "facebook.com",
+        "path": "/login/device-based/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.267Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "datr",
+        "value": "Gr75ZZdQottP6VvTlYjVPfP9",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "sb",
+        "value": "Gr75ZUat66mWxh1Rdk4L1_uZ",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "ps_n",
+        "value": "0",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "ps_l",
+        "value": "0",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "dpr",
+        "value": "2.185312271118164",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "vpd",
+        "value": "v1%3B758x400x2.185312271118164",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "locale",
+        "value": "bn_IN",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "zsh",
+        "value": "AU8XSgGBUtjudhSyRgJ40cSdUQgx6GwqCFYxMJvCkcM1iB1L3fHL3adAVopEexlm363PS4C0WQ3hwOH_-sd8qGIyfj45EiYaVfTlIo_0e4zU5pGBV3jyYB-oVysTm5oepx5zzZb0CrddMADac3NYNKRoU_wGRmLV4yeD-RgGXXUdaxOMP-EFDFCskXLxCoqwjt_BmEBpSHAgGP6QNr-9X40n2lQmGzQzIuyABK68AJ-AXwV2Dp2B9Sc_XB0yxlQof56p6REoAwQNC9phE9zsSxS5DVlm4tX1ajHnColco3_qqhtlkFx3v9Cc1_bslgmUD0B_vOtC2p8NneSiJ0uA5elmh56g_IXem-n_MQqnGnW3wg",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "wd",
+        "value": "494x936",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "fr",
+        "value": "0euGTbAh9EIpxqHgP.AWW6LbXeF9RFN9UMffaFwJq0TzI.Bl-b4a..AAA.0.0.BmBYgg.AWXXUun4Xas",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "c_user",
+        "value": "100031007319165",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "xs",
+        "value": "47%3ATf-Zn58cNOa9mg%3A2%3A1711638560%3A-1%3A8425",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
+    },
+    {
+        "key": "wl_cbv",
+        "value": "v2%3Bclient_version%3A2450%3Btimestamp%3A1711638562",
+        "domain": "facebook.com",
+        "path": "/",
+        "hostOnly": false,
+        "creation": "2024-03-28T17:28:42.271Z",
+        "lastAccessed": "2024-03-28T17:28:42.271Z"
     }
-    
-    return api.sendMessage({
-        body: msg,
-        attachment: allimage
-    }, event.threadID, event.messageID);
-}
+]

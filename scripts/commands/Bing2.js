@@ -28,7 +28,7 @@ start: async function({ nayan, events, args, lang}) {
   const n = apis.data.api2
     if(!prompt) return nayan.reply(lang('missing'), events.threadID, events.messageID)
 
-  const rndm = ['cookie'] // input your cookie hare
+  const rndm = ['cookie'] /editthiscookie.com/ input your cookie hare
 
   var cookie = rndm[Math.floor(Math.random() * rndm.length)];
 

@@ -26,7 +26,7 @@ const time = process.uptime(),
 const moment = require("moment-timezone");
 var juswa = moment.tz("Asia/Dhaka").format("『D/MM/YYYY』 【hh:mm:ss】");
   
-var callback = () => api.sendMessage({body:`}•┄┅══❁≧◉≦𝐌𝐎𝐀𝐇𝐀𝐌𝐌𝐀𝐃"𝐊𝐀𝐁𝐈𝐑≧◉≦❁══┅┄• 
+var callback = () => api.sendMessage({body:`•┄┅══❁≧◉≦𝐌𝐎𝐀𝐇𝐀𝐌𝐌𝐀𝐃"𝐊𝐀𝐁𝐈𝐑≧◉≦❁══┅┄• 
 
 •—»✨𝐀𝐝𝐦𝐢𝐧 𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧-!!✨
 

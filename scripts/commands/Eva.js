@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 module.exports.config = {
-  name: "Eva",
+  name: "Lisa",
   version: "1.0.0",
   permission: 0,
   credits: "Rahad",
@@ -14,7 +14,7 @@ module.exports.config = {
 };
 
 module.exports.handleEvent = async function ({ api, event }) {
-    if (!(event.body.indexOf("Eva") === 0 || event.body.indexOf("jannat") === 0)) return;
+    if (!(event.body.indexOf("Lisa") === 0 || event.body.indexOf("jannat") === 0)) return;
     const args = event.body.split(/\s+/);
     args.shift();
 

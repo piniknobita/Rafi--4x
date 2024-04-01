@@ -1,11 +1,11 @@
 module.exports.config = {
 	name: "say2",
 	version: "1.0.0",
-	permission: 0,
+	permission: 2,
 	credits: "ryuko",
 	description: "text to voice speech messages",
   prefix: true,
-	category: "with prefix",
+	category: "admin",
 	usages: `text to speech messages`,
 	cooldowns: 5,
 	dependencies: {

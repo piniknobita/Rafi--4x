@@ -8,7 +8,7 @@ module.exports = {
 	credits: "nayan", 
 	description: "Fun",
 	category: "no prefix",
-	usages: "😑",
+	usages: "🧐",
         cooldowns: 5, 
 },
 

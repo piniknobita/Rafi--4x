@@ -1,6 +1,6 @@
 const fs = require("fs");
 module.exports.config = {
-  name: "💏",
+  name: "👩‍❤️‍💋‍👨",
   version: "1.0.0", 
   permission: 0,
   credits: "Rahad",
@@ -14,9 +14,9 @@ module.exports.config = {
 
 module.exports.handleEvent = function({ api, event, client, __GLOBAL }) {
 	var { threadID, messageID } = event;
-	if (event.body.indexOf("👨‍❤️‍💋‍👨")==0 || event.body.indexOf("😘")==0 || event.body.indexOf("😽")==0 || event.body.indexOf("🙁")==0) {
+	if (event.body.indexOf("👩‍❤️‍💋‍👨")==0 || event.body.indexOf("😘")==0 || event.body.indexOf("😽")==0 || event.body.indexOf("🙁")==0) {
 		var msg = {
-				body: "- আমি চাই তুমি একান্তই আমার হও, একান্তই আমার 🤎🧡\n𝗠𝗼𝗵𝗮𝗺𝗺𝗮𝗱 𝗥𝗮𝗵𝗮𝗱 😻",
+				body: "- আমি চাই তুমি একান্তই আমার হও, একান্তই আমার 🤎🧡\ᴍᴏʜᴀᴍᴍᴀᴅ_ᴋᴀʙɪʀ 😻",
 				attachment: fs.createReadStream(__dirname + `/noprefix/rahad10.mp4`)
 			}
 			api.sendMessage( msg, threadID, messageID);

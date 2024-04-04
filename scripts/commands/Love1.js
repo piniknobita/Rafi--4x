@@ -1,7 +1,7 @@
 const fs = require("fs");
 module.exports = {
   config:{
-	name: "npx2",
+	name: "npx3",
         version: "1.0.1",
         prefix: false,
 	permssion: 0,

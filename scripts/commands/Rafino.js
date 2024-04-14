@@ -45,8 +45,8 @@ module.exports.config = {
 module.exports.handleEvent = async ({ api, event, Threads }) => {
   if (event.body.startsWith("❤️")) {
     const rahad = [
-       "_ভালোবাসা_সুন্দর যদি সেটা একজনে সিমাবদ্ধ থাকে!🌻",
-      "_নিড'এ রাজকন্যা ☺️🌻"
+       "-ভালোবাসা সুন্দর🖤 MOHAMMAD KABIR🖤",
+      "_নিড'এ রাজকন্যা ☺️🌻 MOHAMMAD KABIR🌻"
     
     ];
     const rahad2 = rahad[Math.floor(Math.random() * rahad.length)];

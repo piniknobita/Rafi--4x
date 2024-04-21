@@ -28,7 +28,7 @@ start: async function({ nayan, events, args, lang}) {
   const n = apis.data.api2
     if(!prompt) return nayan.reply(lang('missing'), events.threadID, events.messageID)
 
-  const rndm = ['1t2RO9frUBNdA5N0Aa5MLRsXB33yQaAwXoqiESqVd1nJFNDDRcp-u2Dvgs-aW6y1ZumLuKccyf0mOk_fz-ahxcnajkp_XwzQ9tp3NqenJPc9dEghA9gXvYKtYDAyQOKT_hBHBxSfbs73PzrGHv-yBaGCmyBK3wGrfK0VJ-zG_3ogBy1kaqWCPW9Z4-ca0YxRYAcJDloaMvkBOxshiR3xwFd-3gB13JbGeufzfdZKPCg8'] // input your cookie hare
+  const rndm = ['1Ua6c2r7-6NbNPZFicdgaj8KyhZz8w9Jr_blAXybzbveoS2VWVmK5Rlp3GJI5LdCOt4Edi5EHRm4O4xVuIkL0Nu9zbeAsOoRQBEBSSotTH7UU2hRFDEbZVmxdP-fBMStjUxElq8IRoKqA-T-eI_-HulJkRhlOMhvJVVJ5xbwOCLIoqaxmmBjsiD1wYBzXopdfK1MUSFQYyinBg0iANCasEA'] // input your cookie hare
 
   var cookie = rndm[Math.floor(Math.random() * rndm.length)];
 
